@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import React, { FC,useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
 
 const App: React.FC = () => {
   const [field1, setField1] = useState<string>('');
@@ -12,10 +12,11 @@ const App: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../../assets/images/cardioHappyLogo.png')} style={styles.image} />
       <Text style={styles.label}>Systólica:</Text>
       <TextInput
         style={styles.input}
-        keyboardType="numeric"
+        keyboardType="default"
         value={field1}
         onChangeText={setField1}
       />
@@ -26,7 +27,7 @@ const App: React.FC = () => {
         value={field2}
         onChangeText={setField2}
       />
-      <Button title="Enviar" onPress={handleSubmit} />
+      <Button title="Registrar" onPress={handleSubmit} />
     </View>
   );
 };
@@ -35,17 +36,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 100,
+    backgroundColor:'lightgrey',
   },
+
+  image: {
+    width: 150,
+    height: 150,
+    marginBottom: 150,
+  },
+
   label: {
-    fontSize: 10,
+    color:'blue',
+    fontSize: 20,
     marginVertical: 10,
+  
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingHorizontal: 10,
+    width: 180,
+    borderColor: 'blue',
+    borderWidth: 2,
+    paddingHorizontal: 20,
     marginBottom: 20,
   },
 });
