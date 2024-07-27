@@ -1,65 +1,32 @@
-import React, { FC,useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
 
-const App: React.FC = () => {
-  const [field1, setField1] = useState<string>('');
-  const [field2, setField2] = useState<string>('');
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Login from '../../src/screens/Login';
+import Home from '../../src/screens/Home';
 
-  const handleSubmit = () => {
-    // Aquí puedes manejar la lógica cuando se envíe el formulario
-    Alert.alert('Datos ingresados', `Systólica: ${field1}, Diastólica: ${field2}`);
-  };
+const Stack = createNativeStackNavigator();
 
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Image source={require('../../assets/images/cardioHappyLogo.png')} style={styles.image} />
-      <Text style={styles.label}>Systólica:</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="default"
-        value={field1}
-        onChangeText={setField1}
-      />
-      <Text style={styles.label}>Diastólica:</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={field2}
-        onChangeText={setField2}
-      />
-      <Button title="Registrar" onPress={handleSubmit} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 100,
-    backgroundColor:'lightgrey',
   },
 
-  image: {
-    width: 150,
-    height: 150,
-    marginBottom: 150,
-  },
-
-  label: {
-    color:'blue',
-    fontSize: 20,
-    marginVertical: 10,
-  
-  },
-  input: {
-    height: 40,
-    width: 180,
-    borderColor: 'blue',
-    borderWidth: 2,
-    paddingHorizontal: 20,
-    marginBottom: 20,
-  },
 });
 
-export default App;
